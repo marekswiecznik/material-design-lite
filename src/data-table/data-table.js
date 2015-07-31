@@ -140,6 +140,24 @@ MaterialDataTable.prototype.init = function() {
   }
 };
 
+/*
+* Downgrade the component
+*/
+MaterialDataTable.prototype.mdlDowngrade_ = function() {
+  'use strict';
+  if (this.element_.classList.contains(this.CssClasses_.IS_UPGRADED)) {
+    var checkboxes = this.element_.querySelectorAll('.mdl-checkbox');
+    var td;
+    //checkboxes[0].removeEventListener('change', this.selectAllListener);
+    //componentHandler.downgradeElements(checkboxes[0]);
+    for (var i = 0; i < checkboxes.length; i++) {
+      td = checkboxes[i].parentElement;
+      td.parentElement.removeChild(td);
+    }
+    this.element_.classList.remove(this.CssClasses_.IS_UPGRADED);
+  }
+};
+
 // The component registers itself. It can assume componentHandler is available
 // in the global scope.
 componentHandler.register({
